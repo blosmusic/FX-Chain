@@ -1,5 +1,5 @@
 const basePath =
-  "https://api.github.com/repos/blosmusic/ir-convolver-amp/contents/assets/ampIRs"; // GitHub API path to the amp IRs
+  "https://api.github.com/repos/blosmusic/fx-chain/contents/assets/ampIRs"; // GitHub API path to the amp IRs
 const headers = {
   Accept: "application/vnd.github.v3+json",
 };
