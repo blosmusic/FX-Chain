@@ -57,10 +57,12 @@ class SliderParameters {
     sliderContainer.appendChild(sliderWrapper);
 
     // Update the stored value when the slider value changes
-    this.sliderElement.addEventListener("input", (event) => {
-      // console.log(this.name, event.target.value); // for debugging
-      this.value = parseFloat(event.target.value);
-      this.updateAudioModule();
+    this.sliderElement.addEventListener("input", () => {
+      // console.log("listener", this.name, event.target.value); // for debugging
+      // this.value = parseFloat(event.target.value);
+      this.value = parseFloat(this.sliderElement.value);
+      this.setValue(this.value);
+      // console.log("listener", this.name, this.value); // for debugging
     });
 
     // Set the labelElement
@@ -82,15 +84,6 @@ class SliderParameters {
     if (this.sliderElement) {
       this.sliderElement.value = newValue;
     }
-
-    // Update the audio module
-    this.updateAudioModule();
-  }
-
-  // Update the audio module
-  updateAudioModule() {
-    // Implement the logic to update the audio module with the new value
-    // console.log("updateAudioModule", this.name, this.value); // for debugging
   }
 
   // reset to default value on double click of slider thumb or label
