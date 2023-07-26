@@ -16,15 +16,24 @@ class SliderParameters {
     this.value = defaultValue; // Store the current value
     this.sliderElement = null; // Reference to the slider element
     this.labelName = labelName; // Reference to the label element
+    this.moduleContainer = moduleContainer; // Reference to the module container
 
-    // Call the createSlider function to design the slider and append it to the module container
-    this.createSlider(moduleContainer); // moduleContainer is the parent element
+    // Check if the slider section already exists or create it
+    this.sliderSection = this.moduleContainer.querySelector(".slider-section");
+    if (!this.sliderSection) {
+      this.sliderSection = document.createElement("div");
+      this.sliderSection.classList.add("slider-section");
+      this.moduleContainer.appendChild(this.sliderSection);
+    }
 
     // Set the reset to default value
     this.resetToDefault();
+
+    // Call the createSlider function to design the slider
+    this.createSlider();
   }
 
-  createSlider(moduleContainer) {
+  createSlider() {
     const sliderContainer = document.createElement("div");
     sliderContainer.classList.add("slider-container");
 
@@ -44,6 +53,7 @@ class SliderParameters {
     this.sliderElement.value = this.value; // Set the value to the current value
 
     sliderWrapper.appendChild(this.sliderElement);
+    // append the slider wrapper to the slider container
     sliderContainer.appendChild(sliderWrapper);
 
     // Update the stored value when the slider value changes
@@ -56,11 +66,11 @@ class SliderParameters {
     // Set the labelElement
     this.labelElement = labelElement;
 
+    // Append the slider container to the module's slider section
+    this.sliderSection.appendChild(sliderContainer);
+
     // Set the reset to default value
     this.resetToDefault();
-
-    // Append the slider to the module container
-    moduleContainer.appendChild(sliderContainer);
   }
 
   setValue(newValue) {
