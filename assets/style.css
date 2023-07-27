@@ -58,7 +58,7 @@ input[type="range"] {
   margin: 10px 0;
 }
 
-#input-db-value {
+#input-db-value, #output-db-value {
   text-transform: none;
 }
 
