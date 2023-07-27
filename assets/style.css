@@ -58,6 +58,10 @@ input[type="range"] {
   margin: 10px 0;
 }
 
+#input-db-value {
+  text-transform: none;
+}
+
 .audio-container,
 .module-container {
   width: 100vu;
