@@ -303,7 +303,7 @@ input[type="range"] {
   background-color: #00ff91;
   border-radius: 100%;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .slider::-moz-range-thumb {
@@ -312,7 +312,7 @@ input[type="range"] {
   background-color: #00ff91;
   border-radius: 100%;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .slider::-webkit-slider-thumb:hover {
