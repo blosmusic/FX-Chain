@@ -283,6 +283,7 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: #333;
+  border: #00ff91 2px solid;
   border-radius: 10px;
   outline: #00ff91;
   width: 100%;
@@ -315,15 +316,15 @@ input[type="range"] {
 }
 
 .slider::-webkit-slider-thumb:hover {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
 .slider::-moz-range-thumb:hover {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   transition: all 0.2s ease-in-out;
   opacity: 1;
 }
