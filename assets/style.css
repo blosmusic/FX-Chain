@@ -22,27 +22,27 @@ h1 {
 }
 
 h2 {
-    font-size: 30px;
-    font-weight: 700;
-    color: #00ff91;
-    background-color: #333;
-    text-align: center;
-    border-radius: 12px;
-    margin: 20px 0;
-    padding: 10px;
-    text-transform: uppercase;
-    vertical-align: top;
-    border: #00ff91 2px solid;
+  font-size: 30px;
+  font-weight: 700;
+  color: #00ff91;
+  background-color: #333;
+  text-align: center;
+  border-radius: 12px;
+  margin: 20px 0;
+  padding: 10px;
+  text-transform: uppercase;
+  vertical-align: top;
+  border: #00ff91 2px solid;
 }
 
 h3 {
-    font-size: 25px;
-    font-weight: 800;
-    color: #262626;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: underline;
-    padding-bottom: 20px;
+  font-size: 25px;
+  font-weight: 800;
+  color: #262626;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  padding-bottom: 20px;
 }
 
 label {
@@ -58,7 +58,8 @@ input[type="range"] {
   margin: 10px 0;
 }
 
-#input-db-value, #output-db-value {
+#input-db-value,
+#output-db-value {
   text-transform: none;
 }
 
@@ -391,6 +392,88 @@ input[type="range"] {
 
   .sidebar {
     height: 100px;
+  }
+
+  .global-container {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+  }
+
+  .amp-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+  }
+
+  .amp-container .slider-section {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    margin: 10px 0;
+  }
+
+  .amp-container .slider-section .slider {
+    width: 280px;
+  }
+
+  .power-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    margin: 10px 0;
+  }
+
+  .power-container button {
+    width: 90px;
+    height: 90px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: silver;
+    color: #333;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    transform: translate(0px, -50px);
+  }
+
+  .power-container .indicator {
+    width: 20px;
+    height: 20px;
+    border: #333 3px solid;
+    border-radius: 100%;
+    margin: -110px 0 0 15px;
+    transform: translate(-10px, -100px);
+    padding: 0 0 10 0;
+    transition: all 0.2s ease-in-out;
+  }         
+
+  .amp-container .custom-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    /* margin: 10px 0; */
+  }
+  .custom-select label {
+    display: none;
   }
 
   .fx-module {
