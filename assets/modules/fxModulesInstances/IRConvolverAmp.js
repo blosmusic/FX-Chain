@@ -14,9 +14,9 @@ const basePath =
 const IRConvolverAmpInputGain = new SliderParameters(
   "input",
   0,
-  10,
+  20,
   0.01,
-  1,
+  5,
   "input",
   IRConvolverAmpModuleContainer
 );
@@ -26,7 +26,7 @@ const IRConvolverAmpLowGain = new SliderParameters(
   -10,
   10,
   0.01,
-  0.1,
+  -0.1,
   "low",
   IRConvolverAmpModuleContainer
 );
@@ -36,7 +36,7 @@ const IRConvolverAmpMidGain = new SliderParameters(
   -10,
   10,
   0.01,
-  0.1,
+  -2,
   "mid",
   IRConvolverAmpModuleContainer
 );
@@ -46,7 +46,7 @@ const IRConvolverAmpHighGain = new SliderParameters(
   -10,
   10,
   0.01,
-  0.1,
+  0.5,
   "high",
   IRConvolverAmpModuleContainer
 );
@@ -54,19 +54,19 @@ const IRConvolverAmpHighGain = new SliderParameters(
 const IRConvolverAmpOutputGain = new SliderParameters(
   "postgain",
   0,
-  10,
+  20,
   0.01,
-  1,
+  5,
   "output",
   IRConvolverAmpModuleContainer
 );
 
 const IRConvolverAmpVolume = new SliderParameters(
   "output",
-  -50,
-  0,
+  -30,
+  30,
   0.01,
-  10,
+  3,
   "volume",
   IRConvolverAmpModuleContainer
 );
@@ -78,7 +78,7 @@ const IRConvolverAmp = new ConvolverAmpModule(
   IRConvolverAmpLowGain.value,
   IRConvolverAmpMidGain.value,
   IRConvolverAmpHighGain.value,
-  300,
+  280,
   3000,
   IRConvolverAmpOutputGain.value,
   IRConvolverAmpVolume.value
