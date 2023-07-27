@@ -19,24 +19,17 @@
       <span id="input-db-value"></span>
     </div>
 
-     <!-- audio settings -->
-    <div class="audio-section">
-      <div class="custom-select">
-        <label for="audio-source">Select Audio:</label>
-        <select id="audio-source">
-          <option value="none" selected>Select Type:</option>
-          <option value="mono">Mono</option>
-          <option value="stereo">Stereo</option>
-          <option value="midi">MIDI</option>
+    <!-- global settings and amp -->
+    <div class="global-container" id="global-container">
+        <div class="amp-container" id="amp-container"></div>
+        <div class="power-container" id="power-container">
+            <div class="custom-select">
+            <label for="amp-type">Select Amp:</label>
+            <select id="amp-type">
+            <option value="" selected>Select Amp:</option>
         </select>
-      </div>
-
-      <div class="custom-select">
-            <label for="midi-input-selector">MIDI Device:</label>
-            <select id="midi-input-selector">
-                <option value="none">Select MIDI Audio for Devices:</option>
-            </select>
         </div>
+            </div>
     </div>
 
     <!-- output meter -->

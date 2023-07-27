@@ -68,6 +68,10 @@ import {
   jcreverbFX,
   jcreverbSwitch,
 } from "./modules/fxModulesInstances/jcreverbFX.js";
+import {
+  IRConvolverAmp,
+  IRConvolverAmpPowerSwitch,
+} from "./modules/fxModulesInstances/IRConvolverAmp.js";
 
 // Create an array to host the FX modules
 const fxModules = [];
@@ -127,5 +131,9 @@ fxButtons.push(delaySwitch); // delay button
 fxButtons.push(pingpongDelaySwitch); // pingpong delay button
 fxButtons.push(reverbSwitch); // reverb button
 fxButtons.push(jcreverbSwitch); // jcreverb button
+
+// add the IRConvolverAmp module and button to the fxModules and fxButtons arrays
+fxModules.push(IRConvolverAmp);
+fxButtons.push(IRConvolverAmpPowerSwitch);
 
 export { fxModules, fxButtons };

@@ -1,59 +1,125 @@
-const basePath =
-  "https://api.github.com/repos/blosmusic/fx-chain/contents/assets/ampIRs"; // GitHub API path to the amp IRs
-const headers = {
-  Accept: "application/vnd.github.v3+json",
-};
-const ampType = document.getElementById("amp-type");
-
-let convolver = new Tone.Convolver();
-const inputGain = new Tone.Gain(inputGainValue);
-const eq = new Tone.EQ3(eqBass, eqMid, eqTreble);
-const outputGain = new Tone.Gain(outputGainValue);
-const globalVolume = new Tone.Volume(globalVolumeValue);
-
-// Add IRs to the select element
-function getAmpIRs() {
-  fetch(basePath, { headers })
-    .then((response) => response.json())
-    .then((data) => {
-      // Filter out the WAV files from the API response
-      const wavFiles = data.filter((item) => item.name.endsWith(".wav"));
-
-      // Iterate through the filtered WAV files and add them to the select menu
-      wavFiles.forEach((file) => {
-        const option = document.createElement("option");
-        option.value = file.download_url;
-        option.textContent = file.name.substring(0, file.name.length - 4);
-        ampType.appendChild(option);
-      });
-    })
-    .catch((error) => {
-      console.error("Error getting amp IRs:", error);
+class ConvolverAmpModule {
+  constructor(
+    basePath,
+    inputGain,
+    lowGain,
+    midGain,
+    highGain,
+    lowFrequencyThreshold,
+    highFrequencyThreshold,
+    outputGain,
+    volume
+  ) {
+    this.basePath = basePath;
+    this.input = new Tone.Gain(inputGain);
+    // set the EQ parameters and thresholds
+    this.eq = new Tone.EQ3({
+      low: lowGain,
+      mid: midGain,
+      high: highGain,
+      lowFrequency: lowFrequencyThreshold,
+      highFrequency: highFrequencyThreshold,
     });
-}
-getAmpIRs();
+    this.postgain = new Tone.Gain(outputGain);
+    this.output = new Tone.Volume(volume);
+    this.convolver = new Tone.Convolver();
 
-// Handle amp type change
-ampType.addEventListener("change", async () => {
-  convolver.dispose();
+    // Connect the components
+    this.input.connect(this.eq);
+    this.eq.connect(this.postgain);
+    this.postgain.connect(this.convolver);
+    this.convolver.connect(this.output);
 
-  // Get the selected amp type
-  const selectedAmpType = ampType.value;
-  console.log("Amp IR:", selectedAmpType);
+    this.headers = {
+      Accept: "application/vnd.github.v3+json",
+    };
 
-  // Load the impulse response from the selected file
-  const impulseResponse = new Tone.Buffer(selectedAmpType, () => {
-    // Set the loaded impulse response to the convolver
-    convolver.buffer = impulseResponse;
+    this.ampType = document.getElementById("amp-type");
+    this.ampType.addEventListener(
+      "change",
+      this.handleAmpTypeChange.bind(this)
+    );
 
-    //bypass convolver if no amp type is selected
-    if (ampType.value === "") {
-      globalVolume.connect(meter);
-      setInterval(() => console.log(meter.getValue()), 100);
+    this.getAmpIRs();
+  }
+
+  getAmpIRs() {
+    fetch(this.basePath, { headers: this.headers })
+      .then((response) => response.json())
+      .then((data) => {
+        const wavFiles = data.filter((item) => item.name.endsWith(".wav"));
+        wavFiles.forEach((file) => {
+          const option = document.createElement("option");
+          option.value = file.download_url;
+          option.textContent = file.name.substring(0, file.name.length - 4);
+          this.ampType.appendChild(option);
+        });
+      })
+      .catch((error) => {
+        console.error("Error getting amp IRs:", error);
+      });
+  }
+
+  handleAmpTypeChange() {
+    const selectedAmpType = this.ampType.value;
+
+    this.convolver.dispose(); // dispose of the last IR
+
+    if (selectedAmpType === "") {
+      // console.log("No amp IR selected");
+      this.convolver = new Tone.Convolver();
+      this.postgain.connect(this.convolver);
+      this.convolver.connect(this.output);
     } else {
-      convolver = new Tone.Convolver(impulseResponse);
-      globalVolume.connect(convolver);
-      convolver.connect(meter);
+      // console.log("Amp IR:", selectedAmpType);
+
+      const impulseResponse = new Tone.Buffer(selectedAmpType, () => {
+        // this.convolver.dispose(); // dispose of the last IR
+        if (impulseResponse.loaded) {
+          // console.log("Amp IR loaded"); 
+          this.convolver.buffer = impulseResponse;
+          this.convolver = new Tone.Convolver(impulseResponse);
+          this.postgain.connect(this.convolver);
+          this.convolver.connect(this.output);
+        } else {
+          console.error("Error loading amp IR");
+        }
+      });
     }
-  });
-});
+  }
+
+  setParameter(parameterName, value) {
+    switch (parameterName) {
+      case "input":
+        this.input.gain.value = value;
+        break;
+      case "lowGain":
+        this.eq.low.value = value;
+        break;
+      case "midGain":
+        this.eq.mid.value = value;
+        break;
+      case "highGain":
+        this.eq.high.value = value;
+        break;
+      case "postgain":
+        this.postgain.gain.value = value;
+        break;
+      case "volume":
+        this.output.volume.value = value;
+        break;
+      default:
+        console.error("Invalid parameter name:", parameterName);
+    }
+  }
+
+  connect(destination) {
+    this.output.connect(destination);
+  }
+
+  disconnect() {
+    this.output.disconnect();
+  }
+}
+
+export default ConvolverAmpModule;

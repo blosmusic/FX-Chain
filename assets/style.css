@@ -78,6 +78,88 @@ input[type="range"] {
   align-items: center;
 }
 
+.global-container {
+  width: 800px;
+  height: 100%;
+  padding: 10px;
+  margin: 5px 10px;
+  background-color: #262626;
+  border: 6px solid #333;
+  border-radius: 10px;
+  color: #00ff91;
+  /* border: 1px solid red; */
+}
+
+.amp-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  /* padding: 0px 10px; */
+  margin: 5px 10px;
+  /* border: 1px solid red; */
+}
+
+.amp-container input {
+  width: 80px;
+  height: 15px;
+  border: 1px solid #00ff91;
+}
+
+.amp-container .slider-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 10px;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+.power-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 10px;
+  /* border: 1px solid red; */
+}
+
+.power-container button {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #333;
+  border-radius: 8px;
+  background-color: silver;
+  color: #333;
+  align-items: top;
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+  justify-content: right;
+  transition: all 0.1s ease-in-out;
+  transform: translate(0px, -70px);
+}
+
+.power-container button:hover {
+  background-color: #333;
+  color: #00ff91;
+  border: 4px solid #00ff91;
+  transition: all 0.2s ease-in-out;
+}
+
+.power-container .indicator {
+  transform: translate(150px, -50px);
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+  width: 40px;
+  border: 5px solid #333;
+}
+
 .sidebar {
   width: 20px;
   height: 200px;
@@ -104,15 +186,16 @@ input[type="range"] {
 .custom-select {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   height: 10vh;
-  background: #f5f5f5;
+  /* border: black 2px solid; */
 }
 
 .custom-select select {
   width: 320px;
   height: 50px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
   color: #00ff91;
   background: #333;
   border: 2px solid #00ff91;
@@ -123,6 +206,15 @@ input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  justify-content: left;
+}
+
+.custom-select label {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-right: 3px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .select-selected {
@@ -161,7 +253,7 @@ input[type="range"] {
   justify-content: space-between;
 }
 
-.slider-section {
+.fx-module .slider-section {
   width: 100%;
   height: 200px;
   display: flex;
